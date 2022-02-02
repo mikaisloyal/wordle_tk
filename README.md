@@ -1,1 +1,1 @@
-# worlde_tk
+# Wordle Tkinter version
