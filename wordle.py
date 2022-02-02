@@ -74,11 +74,11 @@ class Wordle:
         else:
             for j in range(len(self.guess)):
                 if self.guess[j]==self.word[j]:
-                    self.board[self.nGuess][j].config(fg='#6aaa64')
+                    self.board[self.nGuess][j].config(bg='#6aaa64')
                 elif self.guess[j] in self.word:
-                    self.board[self.nGuess][j].config(fg='#c9b458')
+                    self.board[self.nGuess][j].config(bg='#c9b458')
 
-            if self.nGuess==6 or self.word==self.guess:
+            if self.nGuess==5 or self.word==self.guess:
                 self.show_answer()
             else:
                 self.nGuess +=1
