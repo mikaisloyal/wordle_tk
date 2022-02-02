@@ -27,7 +27,7 @@ class Wordle:
         elif event.keysym == 'BackSpace':
             self.do_backspace()
         elif event.keysym == 'F3':
-            tk.messagebox.showinfo('Answer', self.word)
+            self.show_answer()
             
 
     def load_word(self,fname):
@@ -63,6 +63,9 @@ class Wordle:
             self.guess = self.guess[0:-1]
             self.board[self.nGuess][len(self.guess)].config(text=' ')
 
+    def show_answer(self):
+        tk.messagebox.showinfo('Answer', self.word)
+
     def process_guess(self):
         if not self.validate():
             print('Invalid word:', self.guess)
@@ -75,12 +78,14 @@ class Wordle:
                 elif self.guess[j] in self.word:
                     self.board[self.nGuess][j].config(fg='#c9b458')
 
-            self.nGuess +=1
-            self.guess =''
-            print('nGuess:', self.nGuess)
+            if self.nGuess==6 or self.word==self.guess:
+                self.show_answer()
+            else:
+                self.nGuess +=1
+                self.guess =''
+                print('nGuess:', self.nGuess)
 
-        if self.nGuess==6 or self.word==self.guess:
-            tk.messagebox.showinfo('Answer', self.word)
+
 
     def run(self):
         self.frame.focus_set()
